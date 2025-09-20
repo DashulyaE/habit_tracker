@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT
+from django.conf.global_settings import MEDIA_URL, MEDIA_ROOT, AUTH_USER_MODEL
 from dotenv import load_dotenv
 
 load_dotenv(override=True)
@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "users",
+    "habits",
 ]
 
 MIDDLEWARE = [
@@ -106,7 +108,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-MEDIA_URL='media/'
-MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "users.User"
