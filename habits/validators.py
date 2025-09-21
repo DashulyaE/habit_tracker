@@ -48,5 +48,7 @@ def validate_time_to_complete(value):
 def validate_periodicity(value):
     """Проверка, что периодичность не превышает 7 дней."""
 
+    if value is None:
+        value = 1
     if not (0 < value <= 7):
         raise ValidationError("Периодичность должна быть в диапазоне от 1 до 7.")

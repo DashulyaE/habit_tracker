@@ -42,6 +42,7 @@ class Habit(models.Model):
         null=True,
     )
     periodicity = models.PositiveIntegerField(
+        default=1,
         verbose_name="Периодичность",
         help_text="Периодичность выполнения привычки для напоминания в днях",
     )

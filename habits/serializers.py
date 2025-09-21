@@ -24,7 +24,6 @@ class HabitSerializer(ModelSerializer):
         validate_pleasant_habit_no_reward_or_related(data)
         validate_time_to_complete(data.get("time_to_complete"))
         validate_periodicity(data.get("periodicity"))
-        user = data.get("user")
 
         if data.get("sign_of_pleasant_habit"):
             if data.get("award") or data.get("related_habit"):

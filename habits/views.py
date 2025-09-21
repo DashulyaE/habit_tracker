@@ -17,6 +17,12 @@ class HabitCreateAPIView(CreateAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
 
+    def perform_create(self, serializer):
+        """ Создаем привычку и отправляем сообщение пользователю в Телеграм """
+        habit = serializer.save()
+        habit.user = self.request.user
+        habit.save()
+
 
 class HabitListAPIView(ListAPIView):
     """Прсомотр списка привычек"""
@@ -24,7 +30,6 @@ class HabitListAPIView(ListAPIView):
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer
     pagination_class = HabitPagination
-
 
 
 class HabitRetrieveAPIView(RetrieveAPIView):
