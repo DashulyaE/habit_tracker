@@ -11,6 +11,7 @@ from habits.models import Habit
 from habits.paginations import HabitPagination
 from habits.permissions import IsOwner
 from habits.serializers import HabitSerializer
+from habits.tasks import add
 
 
 class HabitCreateAPIView(CreateAPIView):
