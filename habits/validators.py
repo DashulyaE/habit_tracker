@@ -41,6 +41,8 @@ def validate_pleasant_habit_no_reward_or_related(data):
 def validate_time_to_complete(value):
     """Проверка, что время выполнения не превышает 120 секунд"""
     max_duration = timedelta(seconds=120)
+    if value is None:
+        value = timedelta(seconds=60)
     if value > max_duration:
         raise ValidationError("Время выполнения не должно превышать 120 секунд.")
 
