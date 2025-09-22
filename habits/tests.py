@@ -13,7 +13,7 @@ class HabitTestCase(APITestCase):
         self.habit = Habit.objects.create(
             user=self.user,
             location="Дом",
-            time="2025-09-22T13:25:00Z",
+            time="2025-09-22T16:25:00+03:00",
             action="Выпить витамин",
             sign_of_pleasant_habit=False,
             periodicity=1,
@@ -53,3 +53,37 @@ class HabitTestCase(APITestCase):
         data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(data.get("action"), "Выпить витамин Д")
+
+    def test_habit_delete(self):
+        url = reverse("habits:habits_delete", args=(self.habit.pk,))
+        response = self.client.delete(url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(Habit.objects.all().count(), 0)
+
+
+    def test_habit_list(self):
+        url = reverse("habits:habits_list")
+        response = self.client.get(url)
+        data = response.json()
+        result = {
+            "count": 1,
+            "next": None,
+            "previous": None,
+            "results": [
+                {
+                    "id": self.habit.pk,
+                    "location": self.habit.location,
+                    "time": self.habit.time,
+                    "action": self.habit.action,
+                    "sign_of_pleasant_habit": False,
+                    "periodicity": self.habit.periodicity,
+                    "award": self.habit.award,
+                    "time_to_complete": self.habit.time_to_complete,
+                    "is_public": True,
+                    "user": self.user.pk,
+                    "related_habit": None,
+                }
+            ],
+        }
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(data, result)
