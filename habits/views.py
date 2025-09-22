@@ -28,7 +28,7 @@ class HabitCreateAPIView(CreateAPIView):
 
 
 class HabitListAPIView(ListAPIView):
-    """Прсомотр списка привычек"""
+    """Проcмотр списка привычек"""
 
     queryset = Habit.objects.all()
     serializer_class = HabitSerializer

@@ -7,6 +7,7 @@ from users.models import User
 
 
 class HabitTestCase(APITestCase):
+    """Тестирование CRUD операций для модели Привычка"""
 
     def setUp(self):
         self.user = User.objects.create(email="admin@test.ru")
@@ -18,7 +19,7 @@ class HabitTestCase(APITestCase):
             sign_of_pleasant_habit=False,
             periodicity=1,
             time_to_complete="00:01:00",
-            is_public=True
+            is_public=True,
         )
         self.client.force_authenticate(user=self.user)
 
@@ -59,7 +60,6 @@ class HabitTestCase(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Habit.objects.all().count(), 0)
-
 
     def test_habit_list(self):
         url = reverse("habits:habits_list")

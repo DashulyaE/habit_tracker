@@ -28,6 +28,7 @@ def validate_related_habit_is_pleasant(data):
 
 def validate_pleasant_habit_no_reward_or_related(data):
     """Проверка, что у приятной привычки не может быть вознаграждения или связанной привычки."""
+
     from habits.models import Habit
 
     habits = Habit.objects.filter(sign_of_pleasant_habit=True)
@@ -40,6 +41,7 @@ def validate_pleasant_habit_no_reward_or_related(data):
 
 def validate_time_to_complete(value):
     """Проверка, что время выполнения не превышает 120 секунд"""
+
     max_duration = timedelta(seconds=120)
     if value is None:
         value = timedelta(seconds=60)
