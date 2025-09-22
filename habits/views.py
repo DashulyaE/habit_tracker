@@ -11,7 +11,6 @@ from habits.models import Habit
 from habits.paginations import HabitPagination
 from habits.permissions import IsOwner
 from habits.serializers import HabitSerializer
-from habits.tasks import add
 
 
 class HabitCreateAPIView(CreateAPIView):
@@ -22,7 +21,7 @@ class HabitCreateAPIView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        """ Создаем привычку и отправляем сообщение пользователю в Телеграм """
+        """Создаем привычку и отправляем сообщение пользователю в Телеграм"""
         habit = serializer.save()
         habit.user = self.request.user
         habit.save()
@@ -65,7 +64,7 @@ class HabitDestroyAPIView(DestroyAPIView):
 
 
 class HabitPublicListAPIView(ListAPIView):
-    """ Просмотр опубликованных привычек """
+    """Просмотр опубликованных привычек"""
 
     serializer_class = HabitSerializer
     queryset = Habit.objects.filter(is_public=True)
