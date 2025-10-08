@@ -144,4 +144,9 @@ jobs:
           
           # Запускаем контейнеры на сервере
           docker compose --env-file .env up -d
+          - name: Проверить запущенные контейнеры
+          run: docker ps
+
+          - name: Посмотреть логи контейнера
+          run: docker logs <имя_или_id_контейнера>
           EOF
