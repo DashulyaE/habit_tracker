@@ -109,6 +109,16 @@ jobs:
           set -e
           echo "Starting deployment..."
           cd ${{ secrets.DEPLOY_DIR }}
+          
+          # Проверяем, есть ли репозиторий
+          if [ ! -d ".git" ]; then
+            # Клонируем репозиторий, если его нет
+            git clone https://github.com/DashulyaE/habit_tracker .  # точка означает текущая папка
+          fi
+          
+          # Обновляем проект
+          git pull origin main
+          
           # Создаем файл .env
           cat > .env << EOL
           CELERY_BROKER_URL="${{ secrets.CELERY_BROKER_URL }}"
@@ -144,9 +154,4 @@ jobs:
           
           # Запускаем контейнеры на сервере
           docker compose --env-file .env up -d
-          - name: Проверить запущенные контейнеры
-          run: docker ps
-
-          - name: Посмотреть логи контейнера
-          run: docker logs <имя_или_id_контейнера>
           EOF
