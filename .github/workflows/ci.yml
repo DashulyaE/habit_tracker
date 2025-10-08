@@ -117,7 +117,7 @@ jobs:
           fi
           
           # Обновляем проект
-          git pull
+          git pull feature
           
           # Создаем файл .env
           cat > .env << EOL
