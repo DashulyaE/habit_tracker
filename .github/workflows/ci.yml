@@ -142,6 +142,6 @@ jobs:
           # Обновляем проект
           git pull
           
-          # Запускаем контейнеры
+          # Запускаем контейнеры на сервере
           docker compose --env-file .env up -d
           EOF
