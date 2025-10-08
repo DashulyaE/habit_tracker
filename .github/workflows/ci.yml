@@ -139,7 +139,6 @@ jobs:
           TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_URL=${{ secrets.TELEGRAM_URL }}
           USER=${{ secrets.USER }}
-          # Можно добавить остальные переменные по необходимости
           EOL
           
           # Устанавливаем права
@@ -153,5 +152,5 @@ jobs:
           git pull
           
           # Запускаем контейнеры на сервере
-          docker compose --env-file .env up -d
+          # docker compose --env-file .env up -d
           EOF
