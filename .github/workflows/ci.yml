@@ -113,7 +113,7 @@ jobs:
           # Проверяем, есть ли репозиторий
           if [ ! -d ".git" ]; then
             # Клонируем репозиторий, если его нет
-            git clone https://github.com/DashulyaE/habit_tracker .  # точка означает текущая папка
+            git clone github.com/DashulyaE/habit_tracker .  # точка означает текущая папка
           fi
           
           # Обновляем проект
