@@ -113,11 +113,11 @@ jobs:
           # Проверяем, есть ли репозиторий
           if [ ! -d ".git" ]; then
             # Клонируем репозиторий, если его нет
-            git clone https://github.com/DashulyaE/habit_tracker .  # точка означает текущая папка
+            git clone https://github.com/DashulyaE/habit_tracker.git .  # точка означает текущая папка
           fi
           
           # Обновляем проект
-          git pull origin main
+          git pull
           
           # Создаем файл .env
           cat > .env << EOL
