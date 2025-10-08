@@ -152,6 +152,6 @@ jobs:
           git pull
           
           # Запускаем контейнеры на сервере
-          ls -l
-          docker compose --file docker-compose.yml --env-file .env up -d
+          #ls -l
+          #docker compose --file docker-compose.yml --env-file .env up -d
           EOF
